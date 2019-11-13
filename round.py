@@ -2,14 +2,13 @@ import sys
 from PyQt5.QtWidgets import QApplication, QMainWindow
 from PyQt5.QtGui import QPainter, QColor
 from random import choice
-from PyQt5 import uic
+from GUI import Ui_MainWindow
 
 
-class Example(QMainWindow):
+class Example(QMainWindow, Ui_MainWindow):
     def __init__(self):
         super().__init__()
-        self.setGeometry(300, 300, 400, 300)
-        uic.loadUi('untitled.ui', self)
+        self.setupUi(self)
         self.setWindowTitle('Рисование')
         self.show()
         self.figure = False
@@ -27,7 +26,7 @@ class Example(QMainWindow):
 
     def drawKrug(self, qp):
         if self.figure:
-            qp.setBrush(QColor(255, 255, 0))
+            qp.setBrush(QColor(choice(range(255)), choice(range(255)), choice(range(255))))
             d = choice(range(10, 50))
             qp.drawEllipse(choice(range(400)), choice(range(400)), d, d)
 
